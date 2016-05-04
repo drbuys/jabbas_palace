@@ -43,17 +43,28 @@ class Game
       if @players.length == 1
         return @current_player.name
       else
-        if @players[0].score > @players[1].score
-          return @players[0].name
-        elsif @players[0].score == @players[1].score
+        winner = ""
+        if @players[0].score > @players[1].score && @players[0].score > @players[2].score
+          winner = @players[0].name
+          return "#{winner} is the winner!"
+        elsif @players[1].score > @players[0].score && @players[1].score > @players[2].score
+          winner = @players[1].name
+          return "#{winner} is the winner!"
+        elsif @players[2].score > @players[0].score && @players[2].score > @players[1].score
+          winner = @players[2].name
+          return "#{winner} is the winner!"
+        elsif @players[0].score == @players[1].score || @players[1].score == @players[2].score || @players[0].score == @players[2].score
           for x in @players
-            return x.name if x.attribute == :sith
+            if x.attribute == :sith
+              winner = x.name
+              return "#{winner} is the winner!"
+            end
           end
-        else
+        end
           puts "#{@players[0].name}, your score is: #{@players[0].score}"
           puts "#{@players[1].name}, your score is: #{@players[1].score}"
-          puts "#{@players[1].name} is the winner!"
-        end
+          puts "#{@players[2].name}, your score is: #{@players[2].score}"
+          puts "#{winner} is the winner!"
       end
   end
 

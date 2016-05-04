@@ -8,7 +8,8 @@ class Runner
   def initialize
       @player1 = Player.new('Han', :rogue)
       @player2 = Player.new('Darth Vader', :sith)
-      @players = [@player1, @player2]
+      @player3 = Player.new('Leia', :princess)
+      @players = [@player1, @player2, @player3]
       @question1 = Question.new( {"In how many languages is C-3P0 fluent?" => [ "6 million", "16 million"]} )
       @question2 = Question.new({"What is the Wookiee's home world" => ['Kashyyyk', 'Tatooine']})
       @question3 = Question.new({"How many Dewbacks were in the original 1977 theatrical cut of the first Star Wars movie?" => ['Two', 'Five']})
