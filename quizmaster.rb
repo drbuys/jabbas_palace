@@ -1,14 +1,14 @@
 class Quizmaster
 
-  attr_accessor( :name, :question_set )
+  attr_accessor( :name, :question_set, :last_question_asked )
 
   def initialize(name, question_set)
     @question_set = question_set
     @name = name
+    @last_question_asked = []
   end
 
   def ask_question
-    @last_question_asked = []
     @last_question_asked << @question_set.pop
     return @last_question_asked[0].question
   end

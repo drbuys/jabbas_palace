@@ -21,15 +21,17 @@ class Game
     if @quizmaster.question_set.length == 0
       return winner_is
     else
-      puts "#{@current_player.name}, its your turn"
-      puts @quizmaster.ask_question
-      puts "#{@current_player.name}, please enter your answer. \nYour choices are: #{@quizmaster.question_set.answers}"
+      puts "\n#{@current_player.name}, its your turn"
+      puts "\n#{@quizmaster.name}: #{@quizmaster.ask_question}"
+      puts "\n#{@current_player.name}, please enter your answer. Your choices are: '#{@quizmaster.last_question_asked[0].answers[0]}', or '#{@quizmaster.last_question_asked[0].answers[1]}'"
       answer = @current_player.answer_question
       if @quizmaster.is_correct?(answer)
         puts "Well done #{@current_player.name}, you got it right!"
+        puts "\n ---------------------------"
         @current_player.score += 1
       else
         puts "The Rancor is hungry..."
+        puts "\n ^^^^^^^^^^^^^^^^^^^^^^^^^^^"
       end
     end
     update_current_player
@@ -43,8 +45,14 @@ class Game
       else
         if @players[0].score > @players[1].score
           return @players[0].name
+        elsif @players[0].score == @players[1].score
+          for x in @players
+            return x.name if x.attribute == :sith
+          end
         else
-          return @players[1].name
+          puts "#{@players[0].name}, your score is: #{@players[0].score}"
+          puts "#{@players[1].name}, your score is: #{@players[1].score}"
+          puts "#{@players[1].name} is the winner!"
         end
       end
   end

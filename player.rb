@@ -10,6 +10,7 @@ attr_accessor :name, :attribute, :score, :player_answer
   end
 
   def answer_question
+    puts ">"
     @player_answer = gets.chomp
     return @player_answer
   end
