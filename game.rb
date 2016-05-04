@@ -19,11 +19,17 @@ class Game
 
   def next_turn
     if @quizmaster.question_set.length == 0
+      for x in @players
+      puts "#{x.name}, your score is: #{x.score}"
+      # puts "#{@players[1].name}, your score is: #{@players[1].score}"
+      # puts "#{@players[2].name}, your score is: #{@players[2].score}"
+      end
       return winner_is
     else
       puts "\n#{@current_player.name}, its your turn"
       puts "\n#{@quizmaster.name}: #{@quizmaster.ask_question}"
-      puts "\n#{@current_player.name}, please enter your answer. Your choices are: '#{@quizmaster.last_question_asked[0].answers[0]}', or '#{@quizmaster.last_question_asked[0].answers[1]}'"
+      shuffled_answers = @quizmaster.last_question_asked[0].answers.shuffle
+      puts "\n#{@current_player.name}, please enter your answer. Your choices are: '#{shuffled_answers[0]}', or '#{shuffled_answers[1]}'"
       answer = @current_player.answer_question
       if @quizmaster.is_correct?(answer)
         puts "Well done #{@current_player.name}, you got it right!"
@@ -46,13 +52,13 @@ class Game
         winner = ""
         if @players[0].score > @players[1].score && @players[0].score > @players[2].score
           winner = @players[0].name
-          return winner # "#{winner} is the winner!"
+          return "#{winner} is the winner!"
         elsif @players[1].score > @players[0].score && @players[1].score > @players[2].score
           winner = @players[1].name
-          return winner # "#{winner} is the winner!"
+          return "#{winner} is the winner!"
         elsif @players[2].score > @players[0].score && @players[2].score > @players[1].score
           winner = @players[2].name
-          return winner # "#{winner} is the winner!"
+          return "#{winner} is the winner!"
         elsif @players[0].score == @players[1].score || @players[1].score == @players[2].score || @players[0].score == @players[2].score
           for x in @players
             if x.attribute == :sith
@@ -61,10 +67,10 @@ class Game
             end
           end
         end
-          puts "#{@players[0].name}, your score is: #{@players[0].score}"
-          puts "#{@players[1].name}, your score is: #{@players[1].score}"
-          puts "#{@players[2].name}, your score is: #{@players[2].score}"
-          puts "#{winner} is the winner!"
+          # puts "#{@players[0].name}, your score is: #{@players[0].score}"
+          # puts "#{@players[1].name}, your score is: #{@players[1].score}"
+          # puts "#{@players[2].name}, your score is: #{@players[2].score}"
+          # puts "#{winner} is the winner!"
       end
   end
 
