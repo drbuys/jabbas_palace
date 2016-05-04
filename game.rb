@@ -46,13 +46,13 @@ class Game
         winner = ""
         if @players[0].score > @players[1].score && @players[0].score > @players[2].score
           winner = @players[0].name
-          return "#{winner} is the winner!"
+          return winner # "#{winner} is the winner!"
         elsif @players[1].score > @players[0].score && @players[1].score > @players[2].score
           winner = @players[1].name
-          return "#{winner} is the winner!"
+          return winner # "#{winner} is the winner!"
         elsif @players[2].score > @players[0].score && @players[2].score > @players[1].score
           winner = @players[2].name
-          return "#{winner} is the winner!"
+          return winner # "#{winner} is the winner!"
         elsif @players[0].score == @players[1].score || @players[1].score == @players[2].score || @players[0].score == @players[2].score
           for x in @players
             if x.attribute == :sith
